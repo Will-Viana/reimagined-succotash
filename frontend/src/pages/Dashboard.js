@@ -45,6 +45,7 @@ const Dashboard = () => {
     estudos_parciais: 0,
     pilulas: 0,
     obediencia: 0,
+    pratica_violinos: 0,
     challenge_completed: false
   });
 
