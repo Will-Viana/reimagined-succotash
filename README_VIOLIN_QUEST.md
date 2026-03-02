@@ -9,7 +9,7 @@ Violin Quest é um sistema gamificado de ranking para alunos de violino, com des
 ### Para o Professor (Dashboard)
 - **Autenticação Segura**: Login com email e senha
 - **Gerenciamento de Alunos**: Adicionar e remover alunos
-- **Sistema de Pontuação**: Atribuir pontos por 8 quesitos:
+- **Sistema de Pontuação**: Atribuir pontos por 9 quesitos:
   - Postura (3 pontos)
   - Afinação (3 pontos)
   - Execução em sala (4 pontos)
@@ -18,7 +18,8 @@ Violin Quest é um sistema gamificado de ranking para alunos de violino, com des
   - Estudos em casa parciais (2 pontos)
   - Pílulas da semana (5 pontos)
   - Obediência em sala (6 pontos)
-- **Desafio do Mês**: Criar e editar desafios com pontos extras
+  - Prática dos violinos (1 ponto)
+- **Desafio do Mês**: Criar, editar e excluir desafios com pontos extras
 - **Histórico Semanal**: Visualizar pontuações detalhadas por semana de cada aluno
 - **Ajuste de Pontos**: Adicionar ou remover pontos manualmente
 - **Encerrar Competição**: Zerar pontos de todos os alunos (mantém histórico)
