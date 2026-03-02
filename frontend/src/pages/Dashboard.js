@@ -60,14 +60,23 @@ const Dashboard = () => {
 
   const fetchData = async () => {
     try {
-      const [userRes, studentsRes, challengeRes] = await Promise.all([
+      const [userRes, studentsRes, challengeRes, criteriaRes] = await Promise.all([
         axios.get(`${API}/auth/me`),
         axios.get(`${API}/students`),
-        axios.get(`${API}/challenge`)
+        axios.get(`${API}/challenge`),
+        axios.get(`${API}/criteria`)
       ]);
       setUser(userRes.data);
       setStudents(studentsRes.data.sort((a, b) => b.total_points - a.total_points));
       setChallenge(challengeRes.data);
+      setCriteria(criteriaRes.data);
+      
+      // Initialize score form with criteria
+      const initialScores = {};
+      criteriaRes.data.forEach(c => {
+        initialScores[c.id] = 0;
+      });
+      setScoreForm(prev => ({ ...prev, scores: initialScores }));
     } catch (error) {
       toast.error("Erro ao carregar dados");
       if (error.response?.status === 401) {
