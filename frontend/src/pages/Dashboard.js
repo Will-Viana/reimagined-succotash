@@ -165,6 +165,17 @@ const Dashboard = () => {
     }
   };
 
+  const handleDeleteChallenge = async () => {
+    if (!window.confirm("Tem certeza que deseja excluir o desafio do mês?")) return;
+    try {
+      await axios.delete(`${API}/challenge`);
+      toast.success("Desafio excluído!");
+      fetchData();
+    } catch (error) {
+      toast.error("Erro ao excluir desafio");
+    }
+  };
+
   const handleAdjustPoints = async (e) => {
     e.preventDefault();
     try {
