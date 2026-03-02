@@ -420,6 +420,17 @@ async def reorder_criteria(criteria_ids: List[str], current_user: User = Depends
         )
     return {"message": "Criteria reordered successfully"}
 
+
+@api_router.get("/criteria/public", response_model=List[Criterion])
+async def get_public_criteria():
+    # Get criteria from any active teacher (first one found)
+    # For public display, we show criteria from the first teacher
+    criteria = await db.criteria.find({}, {"_id": 0}).sort("order", 1).limit(20).to_list(20)
+    for criterion in criteria:
+        if isinstance(criterion.get('created_at'), str):
+            criterion['created_at'] = datetime.fromisoformat(criterion['created_at'])
+    return criteria
+
 # ==================== CHALLENGE ROUTES ====================
 
 @api_router.get("/challenge", response_model=Optional[MonthlyChallenge])
