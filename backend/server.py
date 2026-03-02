@@ -76,6 +76,7 @@ class ScoreBreakdown(BaseModel):
     estudos_parciais: int = 0
     pilulas: int = 0
     obediencia: int = 0
+    pratica_violinos: int = 0
 
 class WeeklyScore(BaseModel):
     model_config = ConfigDict(extra="ignore")
