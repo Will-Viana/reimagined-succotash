@@ -127,7 +127,8 @@ const Dashboard = () => {
           estudos_diarios: scoreForm.estudos_diarios,
           estudos_parciais: scoreForm.estudos_parciais,
           pilulas: scoreForm.pilulas,
-          obediencia: scoreForm.obediencia
+          obediencia: scoreForm.obediencia,
+          pratica_violinos: scoreForm.pratica_violinos
         },
         challenge_completed: scoreForm.challenge_completed
       });
@@ -143,6 +144,7 @@ const Dashboard = () => {
         estudos_parciais: 0,
         pilulas: 0,
         obediencia: 0,
+        pratica_violinos: 0,
         challenge_completed: false
       });
       fetchData();
