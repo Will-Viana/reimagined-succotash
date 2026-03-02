@@ -240,7 +240,15 @@ const Dashboard = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+          <button
+            onClick={() => navigate("/manage-criteria")}
+            className="bg-coin-gold text-black font-pixel text-xs py-4 px-6 border-4 border-black pixel-shadow hover:translate-y-[2px] hover:pixel-shadow-hover transition-all flex items-center justify-center gap-3"
+            data-testid="manage-criteria-button"
+          >
+            <Edit className="w-5 h-5" strokeWidth={3} />
+            GERENCIAR QUESITOS
+          </button>
           <button
             onClick={() => setShowAddStudent(true)}
             className="bg-pipe-green text-white font-pixel text-xs py-4 px-6 border-4 border-black pixel-shadow hover:translate-y-[2px] hover:pixel-shadow-hover transition-all flex items-center justify-center gap-3"
@@ -259,7 +267,7 @@ const Dashboard = () => {
           </button>
           <button
             onClick={() => setShowChallengeForm(true)}
-            className="bg-coin-gold text-black font-pixel text-xs py-4 px-6 border-4 border-black pixel-shadow hover:translate-y-[2px] hover:pixel-shadow-hover transition-all flex items-center justify-center gap-3"
+            className="bg-mario-red text-white font-pixel text-xs py-4 px-6 border-4 border-black pixel-shadow hover:translate-y-[2px] hover:pixel-shadow-hover transition-all flex items-center justify-center gap-3"
             data-testid="manage-challenge-button"
           >
             <Target className="w-5 h-5" strokeWidth={3} />
