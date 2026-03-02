@@ -139,6 +139,22 @@ const Login = ({ setIsAuthenticated }) => {
               />
             </div>
 
+            {!isRegister && (
+              <div className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  id="remember-me"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="w-5 h-5 border-2 border-black cursor-pointer"
+                  data-testid="remember-me-checkbox"
+                />
+                <label htmlFor="remember-me" className="font-retro text-lg cursor-pointer">
+                  Lembrar-me
+                </label>
+              </div>
+            )}
+
             <button
               type="submit"
               disabled={loading}
