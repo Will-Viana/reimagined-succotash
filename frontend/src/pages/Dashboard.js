@@ -479,19 +479,7 @@ const Modal = ({ children, onClose, title }) => {
 };
 
 // Score Form Modal
-const ScoreFormModal = ({ students, scoreForm, setScoreForm, onSubmit, onClose }) => {
-  const criteriaList = [
-    { key: 'postura', label: 'Postura', max: 3 },
-    { key: 'afinacao', label: 'Afinação', max: 3 },
-    { key: 'execucao_sala', label: 'Execução em sala', max: 4 },
-    { key: 'musica_pronta', label: 'Música pronta', max: 4 },
-    { key: 'estudos_diarios', label: 'Estudos todos os dias', max: 6 },
-    { key: 'estudos_parciais', label: 'Estudos parciais', max: 2 },
-    { key: 'pilulas', label: 'Pílulas da semana', max: 5 },
-    { key: 'obediencia', label: 'Obediência em sala', max: 6 },
-    { key: 'pratica_violinos', label: 'Prática dos violinos', max: 1 }
-  ];
-
+const ScoreFormModal = ({ students, criteria, scoreForm, setScoreForm, onSubmit, onClose }) => {
   return (
     <Modal onClose={onClose} title="ADICIONAR PONTOS">
       <form onSubmit={onSubmit}>
@@ -513,25 +501,37 @@ const ScoreFormModal = ({ students, scoreForm, setScoreForm, onSubmit, onClose }
           </select>
         </div>
 
-        <div className="space-y-3 mb-4">
-          {criteriaList.map((criteria) => (
-            <div key={criteria.key} className="flex items-center justify-between">
-              <label className="font-retro text-lg flex-1">{criteria.label}:</label>
-              <div className="flex items-center gap-2">
-                <input
-                  type="number"
-                  min="0"
-                  max={criteria.max}
-                  value={scoreForm[criteria.key]}
-                  onChange={(e) => setScoreForm({ ...scoreForm, [criteria.key]: parseInt(e.target.value) || 0 })}
-                  className="w-20 bg-white border-4 border-black p-2 font-retro text-xl text-center focus:ring-0 focus:border-mario-red outline-none pixel-shadow-sm"
-                  data-testid={`score-input-${criteria.key}`}
-                />
-                <span className="font-retro text-lg text-gray-500">/ {criteria.max}</span>
+        {criteria.length === 0 ? (
+          <div className="mb-4 p-4 bg-yellow-100 border-2 border-yellow-600">
+            <p className="font-retro text-lg">Nenhum quesito cadastrado. Adicione quesitos primeiro!</p>
+          </div>
+        ) : (
+          <div className="space-y-3 mb-4">
+            {criteria.map((criterion) => (
+              <div key={criterion.id} className="flex items-center justify-between">
+                <label className="font-retro text-lg flex-1">{criterion.name}:</label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="number"
+                    min="0"
+                    max={criterion.max_points}
+                    value={scoreForm.scores[criterion.id] || 0}
+                    onChange={(e) => setScoreForm({ 
+                      ...scoreForm, 
+                      scores: { 
+                        ...scoreForm.scores, 
+                        [criterion.id]: parseInt(e.target.value) || 0 
+                      } 
+                    })}
+                    className="w-20 bg-white border-4 border-black p-2 font-retro text-xl text-center focus:ring-0 focus:border-mario-red outline-none pixel-shadow-sm"
+                    data-testid={`score-input-${criterion.id}`}
+                  />
+                  <span className="font-retro text-lg text-gray-500">/ {criterion.max_points}</span>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         <div className="mb-4 flex items-center gap-3">
           <input
@@ -549,7 +549,8 @@ const ScoreFormModal = ({ students, scoreForm, setScoreForm, onSubmit, onClose }
 
         <button
           type="submit"
-          className="w-full bg-mario-blue text-white font-pixel text-xs py-4 px-6 border-4 border-black pixel-shadow hover:translate-y-[2px] hover:pixel-shadow-hover transition-all"
+          disabled={criteria.length === 0}
+          className="w-full bg-mario-blue text-white font-pixel text-xs py-4 px-6 border-4 border-black pixel-shadow hover:translate-y-[2px] hover:pixel-shadow-hover transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           data-testid="submit-score-button"
         >
           SALVAR PONTOS
