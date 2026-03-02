@@ -184,6 +184,10 @@ const PublicRanking = () => {
               <span>Obediência em sala</span>
               <span className="font-pixel text-coin-gold text-sm">6 pts</span>
             </div>
+            <div className="flex justify-between border-2 border-white p-2">
+              <span>Prática dos violinos</span>
+              <span className="font-pixel text-coin-gold text-sm">1 pt</span>
+            </div>
           </div>
         </div>
 
