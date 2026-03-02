@@ -88,7 +88,7 @@ O aplicativo utiliza um tema retrô inspirado no Super Mario Bros:
 
 **Nota**: Isso desativa o desafio atual. Você pode criar um novo desafio a qualquer momento.
 
-### 6. Ajustar Pontos Manualmente
+### 7. Ajustar Pontos Manualmente
 
 1. Clique em "AJUSTAR PONTOS" (botão azul pequeno)
 2. Selecione o aluno
