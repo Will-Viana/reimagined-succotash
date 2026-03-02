@@ -62,18 +62,33 @@ const Login = ({ setIsAuthenticated }) => {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {isRegister && (
-              <div>
-                <label className="font-retro text-xl block mb-2">Nome:</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-white border-4 border-black p-3 font-retro text-xl focus:ring-0 focus:border-mario-red outline-none pixel-shadow-sm"
-                  required={isRegister}
-                  data-testid="name-input"
-                  placeholder="Digite seu nome"
-                />
-              </div>
+              <>
+                <div>
+                  <label className="font-retro text-xl block mb-2">Nome:</label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full bg-white border-4 border-black p-3 font-retro text-xl focus:ring-0 focus:border-mario-red outline-none pixel-shadow-sm"
+                    required={isRegister}
+                    data-testid="name-input"
+                    placeholder="Digite seu nome"
+                  />
+                </div>
+
+                <div>
+                  <label className="font-retro text-xl block mb-2">Instrumento/Matéria:</label>
+                  <input
+                    type="text"
+                    value={formData.instrument}
+                    onChange={(e) => setFormData({ ...formData, instrument: e.target.value })}
+                    className="w-full bg-white border-4 border-black p-3 font-retro text-xl focus:ring-0 focus:border-mario-red outline-none pixel-shadow-sm"
+                    required={isRegister}
+                    data-testid="instrument-input"
+                    placeholder="Ex: Violino, Piano, Guitarra..."
+                  />
+                </div>
+              </>
             )}
 
             <div>
