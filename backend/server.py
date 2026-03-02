@@ -178,12 +178,36 @@ async def register(user_data: UserCreate):
     if existing_user:
         raise HTTPException(status_code=400, detail="Email already registered")
     
-    user = User(email=user_data.email, name=user_data.name)
+    user = User(email=user_data.email, name=user_data.name, instrument=user_data.instrument)
     user_dict = user.model_dump()
     user_dict['password_hash'] = get_password_hash(user_data.password)
     user_dict['created_at'] = user_dict['created_at'].isoformat()
     
     await db.users.insert_one(user_dict)
+    
+    # Create default criteria for new user
+    default_criteria = [
+        {"name": "Postura", "max_points": 3, "order": 1},
+        {"name": "Afinação", "max_points": 3, "order": 2},
+        {"name": "Execução em sala", "max_points": 4, "order": 3},
+        {"name": "Música pronta", "max_points": 4, "order": 4},
+        {"name": "Estudos todos os dias", "max_points": 6, "order": 5},
+        {"name": "Estudos parciais", "max_points": 2, "order": 6},
+        {"name": "Pílulas da semana", "max_points": 5, "order": 7},
+        {"name": "Obediência em sala", "max_points": 6, "order": 8},
+        {"name": "Prática dos violinos", "max_points": 1, "order": 9}
+    ]
+    
+    for criterion_data in default_criteria:
+        criterion = Criterion(
+            teacher_id=user.id,
+            name=criterion_data["name"],
+            max_points=criterion_data["max_points"],
+            order=criterion_data["order"]
+        )
+        criterion_dict = criterion.model_dump()
+        criterion_dict['created_at'] = criterion_dict['created_at'].isoformat()
+        await db.criteria.insert_one(criterion_dict)
     
     access_token = create_access_token(data={"sub": user.id})
     return {"access_token": access_token, "token_type": "bearer", "user": user}
