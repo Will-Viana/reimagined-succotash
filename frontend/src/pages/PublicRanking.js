@@ -7,6 +7,7 @@ import { Music, Trophy, Star, Medal, Crown, Home } from "lucide-react";
 const PublicRanking = () => {
   const [students, setStudents] = useState([]);
   const [challenge, setChallenge] = useState(null);
+  const [criteria, setCriteria] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -19,12 +20,14 @@ const PublicRanking = () => {
 
   const fetchRanking = async () => {
     try {
-      const [rankingRes, challengeRes] = await Promise.all([
+      const [rankingRes, challengeRes, criteriaRes] = await Promise.all([
         axios.get(`${API}/ranking/public`),
-        axios.get(`${API}/challenge`)
+        axios.get(`${API}/challenge`),
+        axios.get(`${API}/criteria/public`)
       ]);
       setStudents(rankingRes.data);
       setChallenge(challengeRes.data);
+      setCriteria(criteriaRes.data);
     } catch (error) {
       console.error("Erro ao carregar ranking:", error);
     } finally {
