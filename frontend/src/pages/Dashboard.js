@@ -88,7 +88,17 @@ const Dashboard = () => {
   };
 
   const handleLogout = () => {
+    // Verificar se o usuário quer manter os dados salvos
+    const keepRemembered = localStorage.getItem('rememberMe') === 'true';
+    
     setAuthToken(null);
+    
+    // Só limpar os dados se não tiver "lembrar-me" ativado
+    if (!keepRemembered) {
+      localStorage.removeItem('rememberedEmail');
+      localStorage.removeItem('rememberMe');
+    }
+    
     navigate("/login");
   };
 
