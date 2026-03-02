@@ -57,6 +57,13 @@ class Student(BaseModel):
     teacher_id: str
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
+class PublicStudent(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str
+    name: str
+    total_points: int = 0
+    created_at: datetime
+
 class StudentCreate(BaseModel):
     name: str
 
