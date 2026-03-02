@@ -10,7 +10,8 @@ const Login = ({ setIsAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    name: ""
+    name: "",
+    instrument: "Violino"
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
