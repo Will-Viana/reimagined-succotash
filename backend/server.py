@@ -357,6 +357,65 @@ async def adjust_score(adjustment: ScoreAdjustment, current_user: User = Depends
     
     return {"message": "Points adjusted", "new_total": new_total}
 
+
+# ==================== CRITERIA ROUTES ====================
+
+@api_router.get("/criteria", response_model=List[Criterion])
+async def get_criteria(current_user: User = Depends(get_current_user)):
+    criteria = await db.criteria.find({"teacher_id": current_user.id}, {"_id": 0}).sort("order", 1).to_list(1000)
+    for criterion in criteria:
+        if isinstance(criterion['created_at'], str):
+            criterion['created_at'] = datetime.fromisoformat(criterion['created_at'])
+    return criteria
+
+@api_router.post("/criteria", response_model=Criterion)
+async def create_criterion(criterion_data: CriterionCreate, current_user: User = Depends(get_current_user)):
+    # Get max order
+    existing_criteria = await db.criteria.find({"teacher_id": current_user.id}, {"_id": 0}).sort("order", -1).limit(1).to_list(1)
+    max_order = existing_criteria[0]['order'] if existing_criteria else 0
+    
+    criterion = Criterion(
+        teacher_id=current_user.id,
+        name=criterion_data.name,
+        max_points=criterion_data.max_points,
+        order=max_order + 1
+    )
+    criterion_dict = criterion.model_dump()
+    criterion_dict['created_at'] = criterion_dict['created_at'].isoformat()
+    
+    await db.criteria.insert_one(criterion_dict)
+    return criterion
+
+@api_router.put("/criteria/{criterion_id}", response_model=Criterion)
+async def update_criterion(criterion_id: str, criterion_data: CriterionUpdate, current_user: User = Depends(get_current_user)):
+    result = await db.criteria.update_one(
+        {"id": criterion_id, "teacher_id": current_user.id},
+        {"$set": {"name": criterion_data.name, "max_points": criterion_data.max_points}}
+    )
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Criterion not found")
+    
+    criterion = await db.criteria.find_one({"id": criterion_id}, {"_id": 0})
+    if isinstance(criterion['created_at'], str):
+        criterion['created_at'] = datetime.fromisoformat(criterion['created_at'])
+    return Criterion(**criterion)
+
+@api_router.delete("/criteria/{criterion_id}")
+async def delete_criterion(criterion_id: str, current_user: User = Depends(get_current_user)):
+    result = await db.criteria.delete_one({"id": criterion_id, "teacher_id": current_user.id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Criterion not found")
+    return {"message": "Criterion deleted successfully"}
+
+@api_router.put("/criteria/reorder")
+async def reorder_criteria(criteria_ids: List[str], current_user: User = Depends(get_current_user)):
+    for index, criterion_id in enumerate(criteria_ids):
+        await db.criteria.update_one(
+            {"id": criterion_id, "teacher_id": current_user.id},
+            {"$set": {"order": index + 1}}
+        )
+    return {"message": "Criteria reordered successfully"}
+
 # ==================== CHALLENGE ROUTES ====================
 
 @api_router.get("/challenge", response_model=Optional[MonthlyChallenge])
