@@ -53,6 +53,14 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/manage-criteria"
+            element={
+              <ProtectedRoute>
+                <ManageCriteria />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/ranking" element={<PublicRanking />} />
           <Route path="/" element={<Navigate to="/login" replace />} />
         </Routes>
