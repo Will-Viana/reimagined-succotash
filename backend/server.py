@@ -352,7 +352,7 @@ async def create_or_update_challenge(challenge_data: ChallengeCreate, current_us
 
 # ==================== RANKING ROUTES ====================
 
-@api_router.get("/ranking/public", response_model=List[Student])
+@api_router.get("/ranking/public", response_model=List[PublicStudent])
 async def get_public_ranking():
     students = await db.students.find({}, {"_id": 0, "teacher_id": 0}).sort("total_points", -1).to_list(1000)
     for student in students:
