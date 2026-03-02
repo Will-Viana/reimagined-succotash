@@ -737,6 +737,7 @@ const HistoryModal = ({ student, history, onClose }) => {
                 <div>Estudos parciais: {record.scores.estudos_parciais}</div>
                 <div>Pílulas: {record.scores.pilulas}</div>
                 <div>Obediência: {record.scores.obediencia}</div>
+                <div>Prática violinos: {record.scores.pratica_violinos || 0}</div>
               </div>
               {record.challenge_completed && (
                 <div className="mt-3 bg-coin-gold border-2 border-black p-2 font-retro text-lg">
