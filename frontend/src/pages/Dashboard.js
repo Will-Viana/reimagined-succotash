@@ -706,7 +706,7 @@ const AdjustPointsModal = ({ students, adjustForm, setAdjustForm, onSubmit, onCl
 };
 
 // History Modal
-const HistoryModal = ({ student, history, onClose }) => {
+const HistoryModal = ({ student, history, criteria, onClose }) => {
   return (
     <Modal onClose={onClose} title={`HISTÓRICO - ${student?.name}`}>
       {history.length === 0 ? (
@@ -726,15 +726,11 @@ const HistoryModal = ({ student, history, onClose }) => {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-2 font-retro text-base">
-                <div>Postura: {record.scores.postura}</div>
-                <div>Afinação: {record.scores.afinacao}</div>
-                <div>Execução: {record.scores.execucao_sala}</div>
-                <div>Música pronta: {record.scores.musica_pronta}</div>
-                <div>Estudos diários: {record.scores.estudos_diarios}</div>
-                <div>Estudos parciais: {record.scores.estudos_parciais}</div>
-                <div>Pílulas: {record.scores.pilulas}</div>
-                <div>Obediência: {record.scores.obediencia}</div>
-                <div>Prática violinos: {record.scores.pratica_violinos || 0}</div>
+                {criteria.map((criterion) => (
+                  <div key={criterion.id}>
+                    {criterion.name}: {record.scores[criterion.id] || 0}
+                  </div>
+                ))}
               </div>
               {record.challenge_completed && (
                 <div className="mt-3 bg-coin-gold border-2 border-black p-2 font-retro text-lg">
