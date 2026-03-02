@@ -154,44 +154,20 @@ const PublicRanking = () => {
         {/* Criteria Reference */}
         <div className="bg-mario-blue border-4 border-black p-6 pixel-shadow mb-8" data-testid="criteria-reference">
           <h3 className="font-pixel text-lg text-white mb-4 text-center">COMO GANHAR PONTOS</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 font-retro text-lg text-white">
-            <div className="flex justify-between border-2 border-white p-2">
-              <span>Postura</span>
-              <span className="font-pixel text-coin-gold text-sm">3 pts</span>
+          {criteria.length === 0 ? (
+            <p className="font-retro text-xl text-white text-center">Nenhum quesito cadastrado ainda.</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 font-retro text-lg text-white">
+              {criteria.map((criterion) => (
+                <div key={criterion.id} className="flex justify-between border-2 border-white p-2">
+                  <span>{criterion.name}</span>
+                  <span className="font-pixel text-coin-gold text-sm">
+                    {criterion.max_points} {criterion.max_points === 1 ? 'pt' : 'pts'}
+                  </span>
+                </div>
+              ))}
             </div>
-            <div className="flex justify-between border-2 border-white p-2">
-              <span>Afinação</span>
-              <span className="font-pixel text-coin-gold text-sm">3 pts</span>
-            </div>
-            <div className="flex justify-between border-2 border-white p-2">
-              <span>Execução em sala</span>
-              <span className="font-pixel text-coin-gold text-sm">4 pts</span>
-            </div>
-            <div className="flex justify-between border-2 border-white p-2">
-              <span>Música pronta</span>
-              <span className="font-pixel text-coin-gold text-sm">4 pts</span>
-            </div>
-            <div className="flex justify-between border-2 border-white p-2">
-              <span>Estudos todos os dias</span>
-              <span className="font-pixel text-coin-gold text-sm">6 pts</span>
-            </div>
-            <div className="flex justify-between border-2 border-white p-2">
-              <span>Estudos parciais</span>
-              <span className="font-pixel text-coin-gold text-sm">2 pts</span>
-            </div>
-            <div className="flex justify-between border-2 border-white p-2">
-              <span>Pílulas da semana</span>
-              <span className="font-pixel text-coin-gold text-sm">5 pts</span>
-            </div>
-            <div className="flex justify-between border-2 border-white p-2">
-              <span>Obediência em sala</span>
-              <span className="font-pixel text-coin-gold text-sm">6 pts</span>
-            </div>
-            <div className="flex justify-between border-2 border-white p-2">
-              <span>Prática dos violinos</span>
-              <span className="font-pixel text-coin-gold text-sm">1 pt</span>
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Footer */}
