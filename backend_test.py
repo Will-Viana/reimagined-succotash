@@ -66,12 +66,11 @@ class ViolinQuestTester:
                         if 'id' in resp_data:
                             self.student_id = resp_data['id']
                             details += f" - Student ID: {self.student_id}"
-                    return success, resp_data
                 except json.JSONDecodeError:
                     details += " - Invalid JSON response"
             
             self.log_test(name, success, details)
-            return success, {} if not success else response.json() if response.text else {}
+            return success, {} if not success else (response.json() if response.text else {})
 
         except requests.exceptions.RequestException as e:
             self.log_test(name, False, f"Request error: {str(e)}")
