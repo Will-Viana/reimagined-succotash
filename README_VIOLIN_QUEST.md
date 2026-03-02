@@ -104,7 +104,7 @@ O aplicativo utiliza um tema retrô inspirado no Super Mario Bros:
 2. Veja todas as pontuações semanais detalhadas
 3. Feche o modal clicando no X
 
-### 8. Remover Aluno
+### 9. Remover Aluno
 
 1. Na lista de alunos, clique no ícone de lixeira (vermelho)
 2. Confirme a remoção
