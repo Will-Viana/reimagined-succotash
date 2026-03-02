@@ -275,9 +275,80 @@ def get_week_dates():
 async def add_score(score_data: WeeklyScoreCreate, current_user: User = Depends(get_current_user)):
     week_start, week_end = get_week_dates()
     
-    # Calculate total points
-    scores_dict = score_data.scores.model_dump()
-    total_points = sum(scores_dict.values())
+    # Calculate total points from dynamic scores
+    total_points = sum(score_data.scores.values())
+    
+    if score_data.challenge_completed:
+        challenge = await db.monthly_challenge.find_one({"active": True}, {"_id": 0})
+        if challenge:
+            total_points += challenge['points']
+    
+    # Check if score exists for this week
+    existing_score = await db.weekly_scores.find_one({
+        "student_id": score_data.student_id,
+        "week_start_date": week_start,
+        "week_end_date": week_end
+    })
+    
+    if existing_score:
+        # Update existing score
+        challenge_points = 0
+        if score_data.challenge_completed:
+            challenge = await db.monthly_challenge.find_one({"active": True}, {"_id": 0})
+            if challenge:
+                challenge_points = challenge['points']
+        
+        update_data = {
+            "scores": score_data.scores,
+            "challenge_completed": score_data.challenge_completed,
+            "challenge_points": challenge_points,
+            "total_week_points": total_points
+        }
+        await db.weekly_scores.update_one(
+            {"id": existing_score['id']},
+            {"$set": update_data}
+        )
+        
+        # Update student total
+        student = await db.students.find_one({"id": score_data.student_id})
+        if student:
+            # Recalculate total from all weeks
+            all_scores = await db.weekly_scores.find({"student_id": score_data.student_id}, {"_id": 0}).to_list(1000)
+            new_total = sum(s['total_week_points'] for s in all_scores)
+            await db.students.update_one({"id": score_data.student_id}, {"$set": {"total_points": new_total}})
+        
+        existing_score.update(update_data)
+        return WeeklyScore(**existing_score)
+    
+    # Create new score
+    challenge_points = 0
+    if score_data.challenge_completed:
+        challenge = await db.monthly_challenge.find_one({"active": True}, {"_id": 0})
+        if challenge:
+            challenge_points = challenge['points']
+    
+    weekly_score = WeeklyScore(
+        student_id=score_data.student_id,
+        week_start_date=week_start,
+        week_end_date=week_end,
+        scores=score_data.scores,
+        challenge_completed=score_data.challenge_completed,
+        challenge_points=challenge_points,
+        total_week_points=total_points
+    )
+    
+    score_dict = weekly_score.model_dump()
+    score_dict['created_at'] = score_dict['created_at'].isoformat()
+    
+    await db.weekly_scores.insert_one(score_dict)
+    
+    # Update student total points
+    student = await db.students.find_one({"id": score_data.student_id})
+    if student:
+        new_total = student.get('total_points', 0) + total_points
+        await db.students.update_one({"id": score_data.student_id}, {"$set": {"total_points": new_total}})
+    
+    return weekly_score
     
     if score_data.challenge_completed:
         challenge = await db.monthly_challenge.find_one({"active": True}, {"_id": 0})
