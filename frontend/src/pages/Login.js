@@ -23,7 +23,7 @@ const Login = ({ setIsAuthenticated }) => {
     try {
       const endpoint = isRegister ? "/auth/register" : "/auth/login";
       const payload = isRegister
-        ? { email: formData.email, password: formData.password, name: formData.name }
+        ? { email: formData.email, password: formData.password, name: formData.name, instrument: formData.instrument }
         : { email: formData.email, password: formData.password };
 
       const response = await axios.post(`${API}${endpoint}`, payload);
