@@ -443,6 +443,7 @@ const Dashboard = () => {
         <HistoryModal
           student={selectedStudent}
           history={studentHistory}
+          criteria={criteria}
           onClose={() => {
             setShowHistory(false);
             setSelectedStudent(null);
