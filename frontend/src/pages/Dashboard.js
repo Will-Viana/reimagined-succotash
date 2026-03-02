@@ -411,6 +411,7 @@ const Dashboard = () => {
       {showScoreForm && (
         <ScoreFormModal
           students={students}
+          criteria={criteria}
           scoreForm={scoreForm}
           setScoreForm={setScoreForm}
           onSubmit={handleSubmitScore}
