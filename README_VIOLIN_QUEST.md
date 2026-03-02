@@ -118,7 +118,7 @@ O aplicativo utiliza um tema retrô inspirado no Super Mario Bros:
 
 **Importante**: Isso zera os pontos de TODOS os alunos. O histórico semanal é mantido, mas os totais voltam para zero.
 
-### 10. Compartilhar Ranking com Alunos
+### 11. Compartilhar Ranking com Alunos
 
 Compartilhe este link com seus alunos:
 ```
