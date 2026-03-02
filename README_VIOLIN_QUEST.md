@@ -151,8 +151,8 @@ Os alunos podem acessar sem login e ver:
 ## 📊 Sistema de Pontos
 
 ### Pontuação Máxima Semanal
-Sem desafio: 33 pontos (soma de todos os quesitos)
-Com desafio: 33 + pontos do desafio (você define)
+Sem desafio: 34 pontos (soma de todos os quesitos)
+Com desafio: 34 + pontos do desafio (você define)
 
 ### Exemplo de Pontuação Completa
 - Postura: 3
@@ -162,8 +162,9 @@ Com desafio: 33 + pontos do desafio (você define)
 - Estudos todos os dias: 6
 - Pílulas da semana: 5
 - Obediência em sala: 6
+- Prática dos violinos: 1
 - Desafio do mês: 15 (exemplo)
-**Total**: 46 pontos
+**Total**: 47 pontos
 
 ## 🛠️ Suporte e Problemas
 
