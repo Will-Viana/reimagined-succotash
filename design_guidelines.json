@@ -1,0 +1,130 @@
+{
+  "identity": {
+    "persona": "E1 - The Retro Pixel Artist",
+    "tone": "Playful, Nostalgic, Competitive, High-Energy",
+    "description": "You are designing a Super Mario Bros inspired gamified dashboard. Every element should feel like a game interaction. Use vibrant colors, thick borders, and pixelated typography."
+  },
+  "typography": {
+    "font_family": {
+      "heading": "\"Press Start 2P\", cursive",
+      "body": "\"VT323\", monospace",
+      "fallback": "\"Fredoka\", sans-serif"
+    },
+    "imports": [
+      "https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Fredoka:wght@400;600&display=swap"
+    ],
+    "scale": {
+      "h1": "text-2xl md:text-4xl tracking-widest leading-relaxed",
+      "h2": "text-xl md:text-2xl tracking-wide",
+      "body": "text-lg md:text-xl",
+      "caption": "text-base"
+    }
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "DEFAULT": "#E70012",
+        "foreground": "#FFFFFF",
+        "description": "Mario Red - Use for Main Actions, Headers, Mario's Hat"
+      },
+      "secondary": {
+        "DEFAULT": "#049CD8",
+        "foreground": "#FFFFFF",
+        "description": "Overalls Blue - Use for Backgrounds, Secondary Buttons"
+      },
+      "accent": {
+        "DEFAULT": "#FBD000",
+        "foreground": "#000000",
+        "description": "Coin Gold - Use for Points, Highlights, Stars"
+      },
+      "success": {
+        "DEFAULT": "#43B047",
+        "foreground": "#FFFFFF",
+        "description": "Pipe Green - Use for Positive Feedback, Success States"
+      },
+      "background": {
+        "DEFAULT": "#5C94FC",
+        "alt": "#F8F9FA",
+        "dark": "#000000"
+      },
+      "border": "#000000"
+    },
+    "tailwind_config_extension": {
+      "colors": {
+        "mario-red": "#E70012",
+        "mario-blue": "#049CD8",
+        "coin-gold": "#FBD000",
+        "pipe-green": "#43B047",
+        "sky-blue": "#5C94FC",
+        "brick-brown": "#8B4513"
+      }
+    }
+  },
+  "visual_enhancers": {
+    "borders": {
+      "retro": "border-4 border-black",
+      "retro-sm": "border-2 border-black"
+    },
+    "shadows": {
+      "pixel": "4px 4px 0px 0px #000000",
+      "pixel-sm": "2px 2px 0px 0px #000000",
+      "pixel-hover": "2px 2px 0px 0px #000000"
+    },
+    "textures": {
+      "scanlines": "linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06))",
+      "dots": "radial-gradient(#000 1px, transparent 1px)"
+    }
+  },
+  "layout_strategies": {
+    "dashboard": "Bento Grid style but using 'Brick Blocks' as containers. Use 'gap-6' or 'gap-8' to simulate platformer spacing.",
+    "containers": "White background with 'border-4 border-black' and 'shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]'. Sharp corners (rounded-none).",
+    "public_page": "Level Select Map style. Use a path-like structure or a high-score leaderboard style.",
+    "alignment": "Center headers for 'Level Start' feel. Left align lists."
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-mario-red text-white font-['Press_Start_2P'] text-xs py-4 px-6 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-[4px] active:shadow-none transition-all rounded-none uppercase",
+      "secondary": "bg-mario-blue text-white font-['Press_Start_2P'] text-xs py-4 px-6 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-[4px] active:shadow-none transition-all rounded-none uppercase",
+      "icon": "p-2 border-2 border-black bg-white hover:bg-gray-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-none"
+    },
+    "cards": {
+      "default": "bg-white border-4 border-black p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.2)] relative rounded-none",
+      "question_block": "bg-coin-gold border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+    },
+    "inputs": {
+      "default": "bg-white border-4 border-black p-3 font-['VT323'] text-xl focus:ring-0 focus:border-mario-red outline-none shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] rounded-none placeholder:text-gray-400"
+    },
+    "badges": {
+      "score": "bg-black text-coin-gold px-3 py-1 font-['Press_Start_2P'] text-[10px] border-2 border-white"
+    }
+  },
+  "images": {
+    "strategy": "Use CSS-based pixel art where possible or Lucide icons with 'pixel' styling (stroke-width: 2.5). Avoid realistic photos.",
+    "background_pattern": "Use CSS to create a 'cloud' or 'brick' pattern background. Do not rely on external images for UI elements to ensure consistency.",
+    "placeholders": {
+      "logo": "Use a text-based logo with 'Press Start 2P' font.",
+      "user_avatar": "Use a colored square with the first letter of the name in pixel font."
+    },
+    "external_urls": []
+  },
+  "motion": {
+    "hover": "hover:translate-y-[-4px] transition-transform duration-100 ease-steps(2)",
+    "active": "active:scale-95",
+    "page_load": "animate-in fade-in slide-in-from-bottom-4 duration-500",
+    "success_bounce": "animate-bounce"
+  },
+  "accessibility": {
+    "contrast": "Ensure white text on Mario Red/Blue. Use black text on Coin Gold.",
+    "focus_states": "Focus ring must be a thick dashed black line (outline-dashed outline-2 outline-offset-2).",
+    "reduced_motion": "Disable 'jump' animations if prefers-reduced-motion is true."
+  },
+  "instructions_to_main_agent": [
+    "INSTALL FONTS: Add the Google Fonts import to index.css immediately.",
+    "TAILWIND CONFIG: Update tailwind.config.js to include the specific Mario colors and extend font families.",
+    "LUCIDE ICONS: Use 'Pixel' styling for icons. Thick strokes, no rounded caps if possible.",
+    "BACKGROUND: Set the global body background to 'bg-sky-blue' (#5C94FC) to mimic the Level 1-1 sky.",
+    "CONTAINERS: All main content should be inside a white container with thick black borders to stand out against the blue sky.",
+    "THEME: Default to Light Mode (Sky Blue). Dark Mode can be 'Underground' (Black bg with Blue highlights).",
+    "TESTING: Add 'data-testid' to all interactive elements (buttons, inputs, cards)."
+  ]
+}
