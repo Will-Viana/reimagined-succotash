@@ -121,32 +121,18 @@ const Dashboard = () => {
     try {
       await axios.post(`${API}/scores`, {
         student_id: scoreForm.student_id,
-        scores: {
-          postura: scoreForm.postura,
-          afinacao: scoreForm.afinacao,
-          execucao_sala: scoreForm.execucao_sala,
-          musica_pronta: scoreForm.musica_pronta,
-          estudos_diarios: scoreForm.estudos_diarios,
-          estudos_parciais: scoreForm.estudos_parciais,
-          pilulas: scoreForm.pilulas,
-          obediencia: scoreForm.obediencia,
-          pratica_violinos: scoreForm.pratica_violinos
-        },
+        scores: scoreForm.scores,
         challenge_completed: scoreForm.challenge_completed
       });
       toast.success("Pontos adicionados!");
       setShowScoreForm(false);
+      const initialScores = {};
+      criteria.forEach(c => {
+        initialScores[c.id] = 0;
+      });
       setScoreForm({
         student_id: "",
-        postura: 0,
-        afinacao: 0,
-        execucao_sala: 0,
-        musica_pronta: 0,
-        estudos_diarios: 0,
-        estudos_parciais: 0,
-        pilulas: 0,
-        obediencia: 0,
-        pratica_violinos: 0,
+        scores: initialScores,
         challenge_completed: false
       });
       fetchData();
