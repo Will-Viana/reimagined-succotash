@@ -105,7 +105,7 @@ class WeeklyScore(BaseModel):
 
 class WeeklyScoreCreate(BaseModel):
     student_id: str
-    scores: ScoreBreakdown
+    scores: Dict[str, int]
     challenge_completed: bool = False
 
 class ScoreAdjustment(BaseModel):
