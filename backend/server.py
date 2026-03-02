@@ -414,11 +414,15 @@ async def delete_criterion(criterion_id: str, current_user: User = Depends(get_c
 
 @api_router.put("/criteria/reorder")
 async def reorder_criteria(criteria_ids: List[str], current_user: User = Depends(get_current_user)):
-    for index, criterion_id in enumerate(criteria_ids):
-        await db.criteria.update_one(
+    bulk_operations = [
+        UpdateOne(
             {"id": criterion_id, "teacher_id": current_user.id},
             {"$set": {"order": index + 1}}
         )
+        for index, criterion_id in enumerate(criteria_ids)
+    ]
+    if bulk_operations:
+        await db.criteria.bulk_write(bulk_operations)
     return {"message": "Criteria reordered successfully"}
 
 
