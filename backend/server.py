@@ -351,6 +351,13 @@ async def create_or_update_challenge(challenge_data: ChallengeCreate, current_us
     await db.monthly_challenge.insert_one(challenge_dict)
     return challenge
 
+@api_router.delete("/challenge")
+async def delete_challenge(current_user: User = Depends(get_current_user)):
+    # Deactivate all challenges
+    await db.monthly_challenge.update_many({"active": True}, {"$set": {"active": False}})
+    return {"message": "Challenge deleted successfully"}
+
+
 # ==================== RANKING ROUTES ====================
 
 @api_router.get("/ranking/public", response_model=List[PublicStudent])
