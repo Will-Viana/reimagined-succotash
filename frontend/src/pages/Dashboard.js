@@ -24,6 +24,7 @@ const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [students, setStudents] = useState([]);
   const [challenge, setChallenge] = useState(null);
+  const [criteria, setCriteria] = useState([]);
   const [showAddStudent, setShowAddStudent] = useState(false);
   const [showScoreForm, setShowScoreForm] = useState(false);
   const [showChallengeForm, setShowChallengeForm] = useState(false);
@@ -37,15 +38,7 @@ const Dashboard = () => {
 
   const [scoreForm, setScoreForm] = useState({
     student_id: "",
-    postura: 0,
-    afinacao: 0,
-    execucao_sala: 0,
-    musica_pronta: 0,
-    estudos_diarios: 0,
-    estudos_parciais: 0,
-    pilulas: 0,
-    obediencia: 0,
-    pratica_violinos: 0,
+    scores: {},
     challenge_completed: false
   });
 
