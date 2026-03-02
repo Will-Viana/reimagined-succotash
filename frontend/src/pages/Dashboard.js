@@ -282,10 +282,20 @@ const Dashboard = () => {
         {/* Current Challenge */}
         {challenge && (
           <div className="bg-coin-gold border-4 border-black p-6 pixel-shadow mb-8" data-testid="current-challenge">
-            <h2 className="font-pixel text-lg mb-3 flex items-center gap-2">
-              <Target className="w-6 h-6" strokeWidth={3} />
-              DESAFIO DO MÊS
-            </h2>
+            <div className="flex justify-between items-start mb-3">
+              <h2 className="font-pixel text-lg flex items-center gap-2">
+                <Target className="w-6 h-6" strokeWidth={3} />
+                DESAFIO DO MÊS
+              </h2>
+              <button
+                onClick={handleDeleteChallenge}
+                className="p-2 border-2 border-black bg-mario-red hover:bg-red-700 pixel-shadow-sm"
+                data-testid="delete-challenge-button"
+                title="Excluir desafio"
+              >
+                <Trash2 className="w-5 h-5 text-white" strokeWidth={2.5} />
+              </button>
+            </div>
             <h3 className="font-retro text-2xl mb-2">{challenge.title}</h3>
             <p className="font-retro text-xl mb-2">{challenge.description}</p>
             <div className="bg-black text-coin-gold px-3 py-1 font-pixel text-xs inline-block border-2 border-white">
