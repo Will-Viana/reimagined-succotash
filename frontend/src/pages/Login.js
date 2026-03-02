@@ -43,6 +43,16 @@ const Login = ({ setIsAuthenticated }) => {
 
       setAuthToken(access_token);
       setIsAuthenticated(true);
+      
+      // Salvar ou limpar dados do localStorage baseado no "Lembrar-me"
+      if (rememberMe) {
+        localStorage.setItem('rememberedEmail', formData.email);
+        localStorage.setItem('rememberMe', 'true');
+      } else {
+        localStorage.removeItem('rememberedEmail');
+        localStorage.removeItem('rememberMe');
+      }
+      
       toast.success(isRegister ? "Cadastro realizado!" : "Login realizado!");
       navigate("/dashboard");
     } catch (error) {
