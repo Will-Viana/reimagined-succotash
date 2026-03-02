@@ -98,7 +98,7 @@ O aplicativo utiliza um tema retrô inspirado no Super Mario Bros:
 4. Adicione um motivo (opcional)
 5. Clique em "AJUSTAR"
 
-### 7. Visualizar Histórico
+### 8. Visualizar Histórico
 
 1. Na lista de alunos, clique no ícone de relógio ao lado do aluno
 2. Veja todas as pontuações semanais detalhadas
