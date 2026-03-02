@@ -307,7 +307,10 @@ class ViolinQuestTester:
         print("=" * 80)
         print(f"✅ Tests Passed: {self.tests_passed}")
         print(f"❌ Tests Failed: {len(self.failed_tests)}")
-        print(f"📈 Success Rate: {(self.tests_passed/self.tests_run)*100:.1f}%")
+        if self.tests_run > 0:
+            print(f"📈 Success Rate: {(self.tests_passed/self.tests_run)*100:.1f}%")
+        else:
+            print("📈 Success Rate: 0.0%")
         
         if self.failed_tests:
             print("\n💥 FAILED TESTS:")
