@@ -81,6 +81,13 @@ O aplicativo utiliza um tema retrô inspirado no Super Mario Bros:
    - Pontos extras que vale
 3. Clique em "SALVAR DESAFIO"
 
+### 6. Excluir Desafio do Mês
+
+1. No banner amarelo do desafio, clique no ícone de lixeira vermelho no canto superior direito
+2. Confirme a exclusão
+
+**Nota**: Isso desativa o desafio atual. Você pode criar um novo desafio a qualquer momento.
+
 ### 6. Ajustar Pontos Manualmente
 
 1. Clique em "AJUSTAR PONTOS" (botão azul pequeno)
