@@ -492,7 +492,8 @@ const ScoreFormModal = ({ students, scoreForm, setScoreForm, onSubmit, onClose }
     { key: 'estudos_diarios', label: 'Estudos todos os dias', max: 6 },
     { key: 'estudos_parciais', label: 'Estudos parciais', max: 2 },
     { key: 'pilulas', label: 'Pílulas da semana', max: 5 },
-    { key: 'obediencia', label: 'Obediência em sala', max: 6 }
+    { key: 'obediencia', label: 'Obediência em sala', max: 6 },
+    { key: 'pratica_violinos', label: 'Prática dos violinos', max: 1 }
   ];
 
   return (
