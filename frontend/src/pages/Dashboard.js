@@ -236,7 +236,7 @@ const Dashboard = () => {
                 <Music className="w-8 h-8" strokeWidth={3} />
               </div>
               <div>
-                <h1 className="font-pixel text-xl md:text-2xl">VIOLIN QUEST</h1>
+                <h1 className="font-pixel text-xl md:text-2xl">MUSIC RANKING</h1>
                 <p className="font-retro text-xl">Olá, Professor {user?.name}!</p>
               </div>
             </div>

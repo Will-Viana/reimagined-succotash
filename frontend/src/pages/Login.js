@@ -48,7 +48,7 @@ const Login = ({ setIsAuthenticated }) => {
             <Music className="w-12 h-12" strokeWidth={3} />
           </div>
           <h1 className="font-pixel text-2xl md:text-3xl text-white mb-2 tracking-wide" data-testid="app-title">
-            VIOLIN QUEST
+            MUSIC RANKING
           </h1>
           <p className="font-retro text-xl text-white">Sistema de Ranking</p>
         </div>

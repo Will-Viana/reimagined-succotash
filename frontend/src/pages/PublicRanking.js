@@ -69,7 +69,7 @@ const PublicRanking = () => {
             <Trophy className="w-16 h-16" strokeWidth={3} />
           </div>
           <h1 className="font-pixel text-3xl md:text-4xl text-white mb-3 tracking-wide" data-testid="ranking-title">
-            RANKING VIOLIN QUEST
+            RANKING MUSIC RANKING
           </h1>
           <p className="font-retro text-2xl text-white">Luta pela liderança!</p>
         </div>
