@@ -111,7 +111,7 @@ O aplicativo utiliza um tema retrô inspirado no Super Mario Bros:
 
 **Atenção**: Isso também remove todo o histórico do aluno permanentemente.
 
-### 9. Encerrar Competição
+### 10. Encerrar Competição
 
 1. Clique em "ENCERRAR" (botão vermelho pequeno)
 2. Confirme a ação
