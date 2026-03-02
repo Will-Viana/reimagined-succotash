@@ -69,16 +69,27 @@ class PublicStudent(BaseModel):
 class StudentCreate(BaseModel):
     name: str
 
+class Criterion(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    teacher_id: str
+    name: str
+    max_points: int
+    order: int
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class CriterionCreate(BaseModel):
+    name: str
+    max_points: int
+
+class CriterionUpdate(BaseModel):
+    id: str
+    name: str
+    max_points: int
+
 class ScoreBreakdown(BaseModel):
-    postura: int = 0
-    afinacao: int = 0
-    execucao_sala: int = 0
-    musica_pronta: int = 0
-    estudos_diarios: int = 0
-    estudos_parciais: int = 0
-    pilulas: int = 0
-    obediencia: int = 0
-    pratica_violinos: int = 0
+    model_config = ConfigDict(extra="allow")
+    # Dynamic scores - will be populated based on teacher's criteria
 
 class WeeklyScore(BaseModel):
     model_config = ConfigDict(extra="ignore")
